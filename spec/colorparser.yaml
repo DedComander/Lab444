@@ -1,0 +1,82 @@
+﻿module: ColorParser
+
+non_functional_requirements:
+  - id: NFR-1
+    desc: "RGB components must be in range 0..255"
+  - id: NFR-2
+    desc: "HEX string must match format #RGB or #RRGGBB"
+  - id: NFR-3
+    desc: "Color name lookup must be case-insensitive"
+
+methods:
+  - name: RgbToHex
+    req_functional: ["1"]
+    req_non_functional: ["NFR-1"]
+    signature: "string RgbToHex(int r, int g, int b)"
+    pre: "r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255"
+    post: "Returns uppercase HEX string with leading #"
+    equivalence_classes:
+      - case: "Black"
+        inputs: [0, 0, 0]
+        expected: "#000000"
+      - case: "White"
+        inputs: [255, 255, 255]
+        expected: "#FFFFFF"
+      - case: "Red"
+        inputs: [255, 0, 0]
+        expected: "#FF0000"
+      - case: "Invalid negative"
+        inputs: [-1, 0, 0]
+        expected: "ArgumentException"
+      - case: "Invalid overflow"
+        inputs: [0, 256, 0]
+        expected: "ArgumentException"
+
+  - name: HexToRgb
+    req_functional: ["2"]
+    req_non_functional: ["NFR-2"]
+    signature: "int[] HexToRgb(string hex)"
+    pre: "hex != null && hex matches valid HEX pattern"
+    post: "Returns int[3] = {R, G, B}"
+    equivalence_classes:
+      - case: "Red uppercase"
+        inputs: ["#FF0000"]
+        expected: "[255, 0, 0]"
+      - case: "Black"
+        inputs: ["#000000"]
+        expected: "[0, 0, 0]"
+      - case: "Lowercase"
+        inputs: ["#ffffff"]
+        expected: "[255, 255, 255]"
+      - case: "Null input"
+        inputs: [null]
+        expected: "ArgumentException"
+      - case: "Empty input"
+        inputs: [""]
+        expected: "ArgumentException"
+      - case: "Invalid format"
+        inputs: ["#12"]
+        expected: "ArgumentException"
+
+  - name: GetColorName
+    req_functional: ["3"]
+    req_non_functional: ["NFR-3"]
+    signature: "string GetColorName(string hex)"
+    pre: "hex != null && hex != empty"
+    post: "Returns known color name or Unknown"
+    equivalence_classes:
+      - case: "Known color uppercase"
+        inputs: ["#FF0000"]
+        expected: "Red"
+      - case: "Known color lowercase"
+        inputs: ["#ff0000"]
+        expected: "Red"
+      - case: "Unknown color"
+        inputs: ["#123456"]
+        expected: "Unknown"
+      - case: "Null input"
+        inputs: [null]
+        expected: "ArgumentException"
+      - case: "Empty input"
+        inputs: [""]
+        expected: "ArgumentException"
