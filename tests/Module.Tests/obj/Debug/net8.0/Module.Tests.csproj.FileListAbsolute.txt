@@ -1,6 +1,0 @@
-C:\Users\user\source\repos\MyProject\tests\Module.Tests\obj\Debug\net8.0\Module.Tests.csproj.AssemblyReference.cache
-C:\Users\user\source\repos\MyProject\tests\Module.Tests\obj\Debug\net8.0\Module.Tests.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\user\source\repos\MyProject\tests\Module.Tests\obj\Debug\net8.0\Module.Tests.AssemblyInfoInputs.cache
-C:\Users\user\source\repos\MyProject\tests\Module.Tests\obj\Debug\net8.0\Module.Tests.AssemblyInfo.cs
-C:\Users\user\source\repos\MyProject\tests\Module.Tests\obj\Debug\net8.0\Module.Tests.csproj.CoreCompileInputs.cache
-C:\Users\user\source\repos\MyProject\tests\Module.Tests\obj\Debug\net8.0\Module.Tests.sourcelink.json
